@@ -125,3 +125,59 @@ display(spark.table("person") \
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# ## Sintax Difference Example 3
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC SELECT name, age 
+# MAGIC FROM person
+# MAGIC WHERE name = 'Hernan'
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ```
+# person 
+# | where name == "Hernan"
+# | project name, age
+# ```
+
+# CELL ********************
+
+from pyspark.sql.functions import col
+display (
+    spark.table("dbo.person") \
+    .filter(col("name") == "Hernan") \
+    .select("name", "Age")
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ## Syntax Difference Example 4
+
+# CELL ********************
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
