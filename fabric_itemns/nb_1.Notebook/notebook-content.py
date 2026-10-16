@@ -174,6 +174,104 @@ display (
 
 # CELL ********************
 
+# MAGIC %%sql
+# MAGIC SELECT
+# MAGIC     name,
+# MAGIC     age
+# MAGIC FROM person
+# MAGIC WHERE age >= 30
+# MAGIC ORDER BY age ASC
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ```
+# person
+# | where age >= 30
+# | project  name, age
+# | order by age asc
+# ```
+
+# CELL ********************
+
+display(
+    spark.table("person") \
+    .filter(col("age")>= 30) \
+    .select("name", "age") \
+    .orderBy(col("age"), asceding = True)
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ## Syntax Difference Example 5
+
+# MARKDOWN ********************
+
+# ## Create a new Table
+
+# CELL ********************
+
+df = spark.createDataFrame(
+    [
+        ("Hernan","IT"),
+        ("Maria","finance"),
+        ("Juan", "sales")
+    ],
+    "name STRING, info STRING"
+)
+
+df.write.format("delta").saveAsTable("person_info")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC SELECT p.name, p.age, pi.info
+# MAGIC FROM person AS p
+# MAGIC JOIN person_info AS pi
+# MAGIC ON p.name = pi.name
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
+# ```
+# person
+# |join person_info on name
+# |project name, age, info
+# ```
+
+# CELL ********************
+
+display(
+    spark.table("person")
+    .join(spark.table("person_info"), on="name", how="inner")
+    .select("name", "age", "info")
+)
 
 # METADATA ********************
 
