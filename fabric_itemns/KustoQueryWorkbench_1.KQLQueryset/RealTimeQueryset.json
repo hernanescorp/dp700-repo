@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "a2475b28-dcea-4462-ab91-3b52c68aea37",
+        "clusterUri": "https://trd-f2c17tuz8z40r9jg11.z7.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "47080b7f-e361-4e7b-87d1-01f974fc3bd3"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "a0558b77-57d2-4a35-9a1b-265e5189cb8f",
+        "content": "person\n|join person_info on name\n|project name, age, info\n",
+        "title": "Tab",
+        "dataSourceId": "a2475b28-dcea-4462-ab91-3b52c68aea37"
+      }
+    ],
+    "querysetType": "Standalone"
+  }
+}
