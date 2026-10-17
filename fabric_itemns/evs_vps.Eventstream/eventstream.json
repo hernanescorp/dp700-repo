@@ -7,7 +7,82 @@
       "properties": {}
     }
   ],
-  "destinations": [],
+  "destinations": [
+    {
+      "id": "94fa45cb-ce80-45f0-ac6c-8413392f043d",
+      "name": "evh1",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "80d396e7-61f4-94c5-4ad1-1b2a45c63d67",
+        "databaseName": "ev1",
+        "tableName": "vps_records",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "ManageFields"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ManageFields",
+          "schema": {
+            "columns": [
+              {
+                "name": "name",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "state",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "status",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "cpu_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ram_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ram_available_mb",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "event_id",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "streams": [
     {
       "id": "399bfcb4-66e4-49a0-b0fd-d4222f45447f",
@@ -21,6 +96,431 @@
       ]
     }
   ],
-  "operators": [],
+  "operators": [
+    {
+      "name": "Expand",
+      "type": "Expand",
+      "inputNodes": [
+        {
+          "name": "evs_vps-stream"
+        }
+      ],
+      "properties": {
+        "column": {
+          "expressionType": "ColumnReference",
+          "node": null,
+          "columnName": "containers",
+          "columnPathSegments": []
+        },
+        "ignoreMissingOrEmpty": true
+      },
+      "inputSchemas": [
+        {
+          "name": "evs_vps-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "schema_version",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "server",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "host",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "cpu_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ram_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ram_available_mb",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "swap_used_mb",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "disk_used_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "disk_free_gb",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              },
+              {
+                "name": "containers",
+                "type": "Array",
+                "fields": null,
+                "items": {
+                  "name": null,
+                  "type": "Record",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "state",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "status",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "cpu_percent",
+                      "type": "Float",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "memory_percent",
+                      "type": "Float",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "memory_usage",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "network_io_total",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "block_io_total",
+                      "type": "Nvarchar(max)",
+                      "fields": null,
+                      "items": null
+                    },
+                    {
+                      "name": "pids",
+                      "type": "BigInt",
+                      "fields": null,
+                      "items": null
+                    }
+                  ],
+                  "items": null
+                }
+              },
+              {
+                "name": "event_id",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ManageFields",
+      "type": "ManageFields",
+      "inputNodes": [
+        {
+          "name": "Expand"
+        }
+      ],
+      "properties": {
+        "columns": [
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "ArrayValue_containers",
+                "columnPathSegments": [
+                  {
+                    "field": "name"
+                  }
+                ]
+              }
+            },
+            "alias": "name"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "ArrayValue_containers",
+                "columnPathSegments": [
+                  {
+                    "field": "state"
+                  }
+                ]
+              }
+            },
+            "alias": "state"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "ArrayValue_containers",
+                "columnPathSegments": [
+                  {
+                    "field": "status"
+                  }
+                ]
+              }
+            },
+            "alias": "status"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "host",
+                "columnPathSegments": [
+                  {
+                    "field": "cpu_percent"
+                  }
+                ]
+              }
+            },
+            "alias": "cpu_percent"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "host",
+                "columnPathSegments": [
+                  {
+                    "field": "ram_percent"
+                  }
+                ]
+              }
+            },
+            "alias": "ram_percent"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "host",
+                "columnPathSegments": [
+                  {
+                    "field": "ram_available_mb"
+                  }
+                ]
+              }
+            },
+            "alias": "ram_available_mb"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "event_id",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "event_id"
+          }
+        ]
+      },
+      "inputSchemas": [
+        {
+          "name": "Expand",
+          "schema": {
+            "columns": [
+              {
+                "name": "ArrayIndex_containers",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ArrayValue_containers",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "name",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "state",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "status",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "cpu_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "memory_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "memory_usage",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "network_io_total",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "block_io_total",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "pids",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              },
+              {
+                "name": "schema_version",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "server",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "host",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "cpu_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ram_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ram_available_mb",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "swap_used_mb",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "disk_used_percent",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "disk_free_gb",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              },
+              {
+                "name": "event_id",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "compatibilityLevel": "1.1"
 }
