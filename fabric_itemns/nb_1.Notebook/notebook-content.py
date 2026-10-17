@@ -279,3 +279,97 @@ display(
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# # REAL QUERIES
+
+# CELL ********************
+
+assignments = spark.sql("SELECT * FROM lk_1.dp700.assignments LIMIT 1000")
+departments = spark.sql("SELECT * FROM lk_1.dp700.departments LIMIT 1000")
+employees = spark.sql("SELECT * FROM lk_1.dp700.employees LIMIT 1000")
+projects = spark.sql("SELECT * FROM lk_1.dp700.projects")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+display(assignments)
+display(departments)
+display(employees)
+display(projects)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+import pyspark.sql.functions as F
+
+display(
+    employees \
+    .filter(F.col("salary") >= 70000) \
+    .select(
+        F.col("name"),
+        F.col("salary"),
+        F.concat(F.lit("$"), F.col("salary")).alias("salary_string")
+    )
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+e = employees.alias("e")
+d = departments.alias("d")
+
+display(
+    e.join(d, F.col("e.department_id")== F.col("d.department_id"), "left")
+    .select(
+        F.col("e.name").alias("employee_name"),
+        F.col("e.department_id"),
+        F.col("d.department_name")
+    )
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+e = employees.alias("e")
+d = departments.alias("d")
+
+display(
+    e.join(d, F.col("e.department_id")== F.col("d.department_id"), "left")
+    .groupBy("department_name")
+    .count()
+    .withColumnRenamed("count", "number_of_employees")
+
+)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
