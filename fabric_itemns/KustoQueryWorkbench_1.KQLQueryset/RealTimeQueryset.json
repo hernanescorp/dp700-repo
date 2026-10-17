@@ -18,7 +18,7 @@
       },
       {
         "id": "658d83d6-49a4-4da5-ac1b-8a45509d5f5c",
-        "content": "external_table('assignments')\n| take 1\n\nexternal_table('assignments')\n\nexternal_table('departments')\n\nexternal_table('employees')\n\nexternal_table('projects')\n\n\nexternal_table('employees')\n| where salary >= 75000\n| project name, salary, salary_string = strcat(\"$ \", salary)\n\nexternal_table('employees')\n| join kind=leftouter external_table('departments') on department_id\n| project name, department_id, department_name\n\nexternal_table('employees')\n| join kind=leftouter external_table('departments') on department_id\n| summarize number_of_employees = count() by department_name",
+        "content": "// external_table('assignments')\n// | take 1\n\nexternal_table('assignments');\n\nexternal_table('departments');\n\nexternal_table('employees');\n\nexternal_table('projects');\n\n\nexternal_table('employees')\n| where salary >= 75000\n| project name, salary, salary_string = strcat(\"$ \", salary)\n\nexternal_table('employees')\n| join kind=leftouter external_table('departments') on department_id\n| project name, department_id, department_name\n\nexternal_table('employees')\n| join kind=leftouter external_table('departments') on department_id\n| summarize number_of_employees = count() by department_name",
         "title": "queries1",
         "dataSourceId": "a2475b28-dcea-4462-ab91-3b52c68aea37"
       }

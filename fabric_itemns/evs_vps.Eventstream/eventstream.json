@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "id": "d2fd5364-3335-4c21-a144-880bc7b59271",
+      "name": "ce-vps",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [],
+  "streams": [
+    {
+      "id": "399bfcb4-66e4-49a0-b0fd-d4222f45447f",
+      "name": "evs_vps-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "ce-vps"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}
