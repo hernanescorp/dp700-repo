@@ -3,3 +3,7 @@
 
 
 .create-merge table vps_records (name:string, state:string, status:string, cpu_percent:real, ram_percent:real, ram_available_mb:real, event_id:string) 
+.create-merge table saltos_table (COUNT_All:long, Window_End_Time:datetime) 
+.create-merge table instantanea_tabla (COUNT_All:long, Window_End_Time:datetime) 
+.create-merge table salto_table (COUNT_All:long, Window_End_Time:datetime) 
+.create-merge table sesion_table (COUNT_All:long, Window_End_Time:datetime) 
