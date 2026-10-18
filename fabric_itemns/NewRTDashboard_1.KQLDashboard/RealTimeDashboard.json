@@ -1,0 +1,132 @@
+{
+  "schema_version": 86,
+  "flavor": "RTDashboard_Regular",
+  "tiles": [
+    {
+      "id": "c57f37ec-f9b4-45f9-a7d3-0ffc62ad83e7",
+      "title": "Nuevo icono",
+      "visualType": "table",
+      "pageId": "d072cae7-260a-43f1-941f-34dec647d83a",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "23dc7861-85cb-470d-84c4-0d31a21f3e42"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "20429225-8297-485d-9774-4255423a37bf",
+      "title": "Nuevo icono",
+      "visualType": "table",
+      "pageId": "d072cae7-260a-43f1-941f-34dec647d83a",
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "87bd9701-4cc1-4957-9db6-4639f326238a"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilter": [],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    }
+  ],
+  "baseQueries": [
+    {
+      "id": "5b99488b-c9d9-4f65-9233-13447c5e144b",
+      "queryId": "0de78330-96a0-48a4-bad5-8da34569c282",
+      "variableName": "base_query"
+    }
+  ],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "4028cca2-43f7-4d6a-93b4-7689cef002a1",
+      "displayName": "Intervalo de tiempo",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "b1fa78f2-ba9e-4ee1-82a2-8fc731804c52",
+      "kind": "kusto-trident",
+      "clusterUri": "",
+      "databaseArtifactId": "45c63d67-1b2a-4ad1-94c5-61f480d396e7",
+      "database": "80d396e7-61f4-94c5-4ad1-1b2a45c63d67",
+      "workspace": "00000000-0000-0000-0000-000000000000",
+      "name": "ev1"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Página 1",
+      "id": "d072cae7-260a-43f1-941f-34dec647d83a"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b1fa78f2-ba9e-4ee1-82a2-8fc731804c52"
+      },
+      "text": "vps_records\r\n| where ingestion_time() between (ago(3d) .. now() )\r\n| summarize latest_observation = arg_max(ingestion_time(), *) by name\r\n| project name, latest_observation, state\r\n| order by name asc ",
+      "id": "23dc7861-85cb-470d-84c4-0d31a21f3e42",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b1fa78f2-ba9e-4ee1-82a2-8fc731804c52"
+      },
+      "text": "base_query\r\n| project name, latest_observation, state",
+      "id": "87bd9701-4cc1-4957-9db6-4639f326238a",
+      "usedVariables": [
+        "base_query"
+      ]
+    },
+    {
+      "id": "0de78330-96a0-48a4-bad5-8da34569c282",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b1fa78f2-ba9e-4ee1-82a2-8fc731804c52"
+      },
+      "text": "vps_records\n| where ingestion_time() between (ago(3d) .. now() )\n| summarize latest_observation = arg_max(ingestion_time(), *) by name",
+      "usedVariables": []
+    }
+  ],
+  "embeddedApps": []
+}
