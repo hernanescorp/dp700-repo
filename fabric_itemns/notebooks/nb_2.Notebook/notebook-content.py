@@ -309,3 +309,58 @@ print("Secreto recuperado correctamente:", bool(secreto))
 #     - NotebookUtils library
 #         - notebookutils.notebook.run
 #         - notebookutils.notebook.runMultiple
+
+# CELL ********************
+
+notebookutils.notebook.run("nb_ex_1",10)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+notebookutils.notebook.runMultiple(["nb_ex_1", "nb_ex_2"])
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+DAG = {
+    "activities": [
+        {
+            "name":"nb_ex_1",
+            "path": "nb_ex_1",
+            "timeoutPerCellInSeconds":90,
+            "args":{"param_1":1},
+            "retry":1,
+            "retryIntervalInSeconds":10
+        },
+        {
+            "name":"nb_ex_2",
+            "path":"nb_ex_2",
+            "args":{"param1":1},
+            "dependencies":["nb_ex_1"]
+        }
+
+    ],
+    "timeoutInSeconds": 300,
+    "concurrency" : 3
+}
+
+exit_values_dag = notebookutils.notebook.runMultiple(DAG, {"displayDAGViaGraphviz":True})
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
