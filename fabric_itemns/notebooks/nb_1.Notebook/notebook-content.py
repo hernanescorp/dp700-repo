@@ -30,16 +30,16 @@
 
 # CELL ********************
 
-df = spark.createDataFrame(
-    [
-        ("Hernan", 41, "Ingeniero"),
-        ("Maria", 20, "Analista"),
-        ("Juan", 31, "Cientifico")
-    ],
-    "name STRING, age INT, role STRING"
-)
+# df = spark.createDataFrame(
+#     [
+#         ("Hernan", 41, "Ingeniero"),
+#         ("Maria", 20, "Analista"),
+#         ("Juan", 31, "Cientifico")
+#     ],
+#     "name STRING, age INT, role STRING"
+# )
 
-df.write.format("delta").saveAsTable("person")
+# df.write.format("delta").saveAsTable("person")
 
 
 # METADATA ********************
@@ -224,16 +224,16 @@ display(
 
 # CELL ********************
 
-df = spark.createDataFrame(
-    [
-        ("Hernan","IT"),
-        ("Maria","finance"),
-        ("Juan", "sales")
-    ],
-    "name STRING, info STRING"
-)
+# df = spark.createDataFrame(
+#     [
+#         ("Hernan","IT"),
+#         ("Maria","finance"),
+#         ("Juan", "sales")
+#     ],
+#     "name STRING, info STRING"
+# )
 
-df.write.format("delta").saveAsTable("person_info")
+# df.write.format("delta").saveAsTable("person_info")
 
 # METADATA ********************
 
