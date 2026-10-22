@@ -1,0 +1,285 @@
+{
+  "sources": [
+    {
+      "id": "8dc3f895-f647-4eca-ac0b-7646f430b17a",
+      "name": "CustomEndpoint-Source",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "6a55f8a2-85a7-4360-97be-75e2b679a8e2",
+      "name": "nb_5_sparkss-22fa",
+      "type": "Notebook",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "9d37aac3-215b-bb6e-462a-edb3fdd234d3"
+      },
+      "inputNodes": [
+        {
+          "name": "ev_3_asus-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ev_3_asus-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "host",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "cpu_percent",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "memory_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "disk_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "gpu_temperature_c",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "8351fd36-81c7-47bb-b487-e551d4c2532c",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "80d396e7-61f4-94c5-4ad1-1b2a45c63d67",
+        "databaseName": "ev1",
+        "tableName": "stream_cpu_asus",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "ManageFields"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ManageFields",
+          "schema": {
+            "columns": [
+              {
+                "name": "host",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "cpu_percent",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "memory_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "disk_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "gpu_temperature_c",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "c00a8cf8-893a-4aa7-b07d-3e705630f361",
+      "name": "ev_3_asus-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "CustomEndpoint-Source"
+        }
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "name": "ManageFields",
+      "type": "ManageFields",
+      "inputNodes": [
+        {
+          "name": "ev_3_asus-stream"
+        }
+      ],
+      "properties": {
+        "columns": [
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "host",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "host"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "cpu_percent",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "cpu_percent"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "memory_percent",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "memory_percent"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "disk_percent",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "disk_percent"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "gpu_temperature_c",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "gpu_temperature_c"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "timestamp",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "timestamp"
+          }
+        ]
+      },
+      "inputSchemas": [
+        {
+          "name": "ev_3_asus-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "host",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "cpu_percent",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "memory_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "disk_percent",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "gpu_temperature_c",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "compatibilityLevel": "1.1"
+}

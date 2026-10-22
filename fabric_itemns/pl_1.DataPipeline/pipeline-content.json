@@ -21,6 +21,47 @@
         },
         "name": "Notebook1",
         "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0cb75fa1-a62f-915b-44a2-112c907a2508",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "abc"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Notebook2",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0aee1d34-1909-a77e-4437-6b29c84b52a4",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "abc"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Notebook2_copy1",
+        "dependsOn": [
+          {
+            "activity": "Notebook2",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       }
     ]
   }

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "NewRTDashboard_asus",
+    "description": "NewRTDashboard_asus"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "553630ea-b631-b41c-470d-a61ef759e1a9"
+  }
+}

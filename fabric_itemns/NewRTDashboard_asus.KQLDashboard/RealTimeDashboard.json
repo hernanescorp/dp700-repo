@@ -1,0 +1,123 @@
+{
+  "schema_version": 88,
+  "flavor": "RTDashboard_Regular",
+  "tiles": [
+    {
+      "id": "ba4e7554-f7e7-4681-8984-1465b6a533d3",
+      "title": "Nuevo icono",
+      "visualType": "timeseries",
+      "pageId": "20864757-be5a-41b2-b9dc-439cfe3fe00b",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 6,
+        "height": 28
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5eefa962-23e9-4e6f-977d-606aea4dd8f5"
+      },
+      "visualOptions": {
+        "timeSeries__timeDataSource": null,
+        "timeSeries__allowPanAndZoom": false,
+        "timeSeries__initialZoom": null,
+        "timeSeries__measuredEntities": [],
+        "timeSeries__measuredData": null,
+        "seriesColors": {}
+      }
+    },
+    {
+      "id": "b52e3663-e5dc-4f78-ac85-9fcc531a9270",
+      "title": "Nuevo icono",
+      "visualType": "timeseries",
+      "pageId": "20864757-be5a-41b2-b9dc-439cfe3fe00b",
+      "layout": {
+        "x": 6,
+        "y": 0,
+        "width": 7,
+        "height": 31
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "09146b86-fd26-44ee-9bd5-b0caf449bdc2"
+      },
+      "visualOptions": {
+        "timeSeries__timeDataSource": null,
+        "timeSeries__allowPanAndZoom": false,
+        "timeSeries__initialZoom": null,
+        "timeSeries__measuredEntities": [],
+        "timeSeries__measuredData": [
+          {
+            "id": "gpu_temperature",
+            "columns": [],
+            "label": "",
+            "defaultVisibility": true,
+            "chartFormat": "line",
+            "yAxisScale": "linear",
+            "yAxisMinimumValue": 30,
+            "yAxisMaximumValue": 50,
+            "horizontalLines": []
+          }
+        ],
+        "seriesColors": {}
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "d3a205bc-be7f-4cee-b728-2ee54f8bf181",
+      "displayName": "Intervalo de tiempo",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "7a8fbc64-0f33-463d-907e-2f7f70bdc39b",
+      "kind": "kusto-trident",
+      "clusterUri": "",
+      "databaseArtifactId": "45c63d67-1b2a-4ad1-94c5-61f480d396e7",
+      "database": "80d396e7-61f4-94c5-4ad1-1b2a45c63d67",
+      "workspace": "00000000-0000-0000-0000-000000000000",
+      "name": "ev1"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Página 1",
+      "id": "20864757-be5a-41b2-b9dc-439cfe3fe00b"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "7a8fbc64-0f33-463d-907e-2f7f70bdc39b"
+      },
+      "text": "stream_cpu_asus\r\n| extend event_time = todatetime(timestamp)\r\n| where event_time > ago(10m)\r\n| summarize cpu_percent = avg(cpu_percent) by bin(event_time, 5s)\r\n| order by event_time asc",
+      "id": "5eefa962-23e9-4e6f-977d-606aea4dd8f5",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "7a8fbc64-0f33-463d-907e-2f7f70bdc39b"
+      },
+      "text": "stream_cpu_asus\r\n| extend event_time = todatetime(timestamp)\r\n| where event_time > ago(10m)\r\n| summarize gpu_temperature = avg(gpu_temperature_c) by bin(event_time, 5s)\r\n| order by event_time asc ",
+      "id": "09146b86-fd26-44ee-9bd5-b0caf449bdc2",
+      "usedVariables": []
+    }
+  ],
+  "embeddedApps": []
+}

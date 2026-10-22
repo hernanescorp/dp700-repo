@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "name": "orders",
+    "path": "/Files",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "1f8466e0-b934-4c64-b302-8ece295d17f0",
+        "location": "https://graxianodatalake.dfs.core.windows.net",
+        "subpath": "/synapse/bronze/postgresql/orders"
+      }
+    }
+  }
+]
