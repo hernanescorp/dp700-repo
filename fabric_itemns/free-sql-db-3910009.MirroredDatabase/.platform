@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MirroredDatabase",
+    "displayName": "free-sql-db-3910009"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ce3b5e7f-a379-b881-42a8-63c795092757"
+  }
+}
