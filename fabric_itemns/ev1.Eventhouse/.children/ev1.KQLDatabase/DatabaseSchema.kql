@@ -7,3 +7,4 @@
 .create-merge table instantanea_tabla (COUNT_All:long, Window_End_Time:datetime) 
 .create-merge table salto_table (COUNT_All:long, Window_End_Time:datetime) 
 .create-merge table sesion_table (COUNT_All:long, Window_End_Time:datetime) 
+.create-merge table stream_cpu_asus (host:string, cpu_percent:real, memory_percent:real, disk_percent:real, gpu_temperature_c:real, timestamp:string) 
