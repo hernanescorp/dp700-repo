@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "0fa412d0-8f30-4d76-9c9f-32afa96e5867",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "80d396e7-61f4-94c5-4ad1-1b2a45c63d67"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "a3474a5e-1171-49d4-b05e-f1fc938ace14",
+        "content": ".create table e015_website_visits (\n    visit_id: string,\n    visit_timestamp: datetime,\n    page: string \n) \n\n.ingest inline into table e015_website_visits with (format = 'csv') <|\n\"v001\",\"2025-01-01T09:15:00Z\",\"Home\"\n\"v002\",\"2025-01-01T11:30:00Z\",\"Contact\"\n\"v003\",\"2025-01-02T14:45:00Z\",\"Home\"\n\"v004\",\"2025-01-03T08:05:00Z\",\"Pricing\"\n\"v005\",\"2025-01-03T20:10:00Z\",\"Blog\"\n\ne015_website_visits\n| order by visit_timestamp asc \n\n// Create a Materialized View without backfill\n.create async materialized-view with (\n    docString  = \"Daily website visits without backfill\"\n) e015_mv_daily_web_visits_no_backfill\non table e015_website_visits\n{\n    e015_website_visits\n    | extend visit_day = bin(visit_timestamp, 1d)\n    | summarize visit_count = count() by visit_day\n}\n\n// Query mv witouth backfill\ne015_mv_daily_web_visits_no_backfill \n\n// Create MV WITH backfill\n.create async materialized-view with (\n    backfill  = true,\n    effectiveDateTime = datetime(2024-12-01T00:00:00Z),\n    docString = \"Daily visits with backfill\"\n) e015_mv_daily_web_visits_with_backfill\non table e015_website_visits\n{\n    e015_website_visits\n    | extend visit_day = bin(visit_timestamp, 1d)\n    | summarize  visit_count = count() by visit_day\n}\n\n// Query mv view with backfill\ne015_mv_daily_web_visits_with_backfill\n| order by visit_day asc \n\n// Show materialized view in the database\n.show materialized-views \n\n// More Ingestions\n.ingest inline into table e015_website_visits with (format = 'csv') <|\n\"v006\",\"2025-01-04T10:10:00Z\",\"Home\"\n\"v007\",\"2025-01-04T12:30:00Z\",\"Contact\"\n\n// Quey table agaiin\ne015_website_visits\n| order by visit_timestamp asc \n\n\ne015_mv_daily_web_visits_no_backfill\n| order by visit_day asc \n;\ne015_mv_daily_web_visits_with_backfill\n| order by visit_day asc \n\n//Create a simple function to get website visits for a given page\n.create-or-alter function get_daily_visits_per_page(pageName:string)\n{\n    e015_website_visits\n    | where page  == pageName\n    | extend visit_day = bin(visit_timestamp, 1d)\n    | summarize visit_count = count() by visit_day\n}\n\n// qUERY THE FUNCTION TO SEE VISTIS TO THE home page\nget_daily_visits_per_page(\"Home\")\n| order by visit_day asc \n\n// drop kql database itemns\n.drop materialized-view e015_mv_daily_web_visits_no_backfill ifexists\n.drop materialized-view e015_mv_daily_web_visits_with_backfill ifexists\n",
+        "title": "Tab",
+        "dataSourceId": "0fa412d0-8f30-4d76-9c9f-32afa96e5867"
+      }
+    ],
+    "querysetType": "Standalone"
+  }
+}
