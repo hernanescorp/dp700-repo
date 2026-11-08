@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/mirroredAzureDatabricksCatalog/definition/mirroredAzureDatabricksCatalogDefinition/1.0.0/schema.json",
+  "autoSync": "Enabled",
+  "catalogName": "dp700_demo",
+  "databricksWorkspaceConnectionId": "49a22d59-716f-4588-9293-b16988b00fbb",
+  "mirrorConfiguration": {
+    "schemas": [
+      {
+        "mirroringMode": "Exclude",
+        "name": "default"
+      }
+    ]
+  },
+  "mirroringMode": "Full"
+}

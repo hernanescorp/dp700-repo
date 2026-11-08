@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MirroredAzureDatabricksCatalog",
+    "displayName": "dp700_demo",
+    "description": ""
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "402ba8fe-5df1-81c2-45dd-0d0e48a15281"
+  }
+}
