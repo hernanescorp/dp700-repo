@@ -1,0 +1,4 @@
+CREATE SCHEMA [dp700_e018]
+    AUTHORIZATION [dbo];
+GO
+
