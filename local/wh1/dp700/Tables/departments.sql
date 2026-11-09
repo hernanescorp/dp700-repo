@@ -4,6 +4,5 @@ CREATE TABLE [dp700].[departments] (
     [manager]         VARCHAR (50) NULL,
     [location]        VARCHAR (50) NULL
 );
-
-
 GO
+

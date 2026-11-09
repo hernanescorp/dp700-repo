@@ -5,6 +5,5 @@ CREATE TABLE [dp700].[projects] (
     [budget]        DECIMAL (12, 2) NULL,
     [start_date]    DATE            NULL
 );
-
-
 GO
+

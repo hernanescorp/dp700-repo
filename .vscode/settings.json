@@ -1,0 +1,5 @@
+{
+    "dataworkspace.excludedProjects": [
+        "fabric_itemns/wh1.Warehouse/wh1.sqlproj"
+    ]
+}

@@ -5,6 +5,5 @@ CREATE TABLE [dp700].[assignments] (
     [assigned_date] DATE         NULL,
     [role]          VARCHAR (50) NULL
 );
-
-
 GO
+

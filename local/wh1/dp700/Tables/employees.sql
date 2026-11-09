@@ -5,6 +5,5 @@ CREATE TABLE [dp700].[employees] (
     [hire_date]     DATE            NULL,
     [salary]        DECIMAL (10, 2) NULL
 );
-
-
 GO
+
