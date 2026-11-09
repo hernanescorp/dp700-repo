@@ -1,5 +1,18 @@
 [
   {
+    "name": "stream_cpu_asus",
+    "path": "/Tables/dbo",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/stream_cpu_asus",
+        "itemId": "80d396e7-61f4-94c5-4ad1-1b2a45c63d67",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "KustoDatabase"
+      }
+    }
+  },
+  {
     "name": "orders",
     "path": "/Files",
     "target": {
