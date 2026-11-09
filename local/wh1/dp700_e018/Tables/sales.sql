@@ -6,3 +6,9 @@ CREATE TABLE [dp700_e018].[sales] (
 );
 GO
 
+
+GRANT SELECT
+    ON OBJECT::[dp700_e018].[sales] TO [test@graxiano.com]
+    AS [dbo];
+GO
+

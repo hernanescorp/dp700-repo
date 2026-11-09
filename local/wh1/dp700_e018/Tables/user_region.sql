@@ -4,3 +4,9 @@ CREATE TABLE [dp700_e018].[user_region] (
 );
 GO
 
+
+GRANT SELECT
+    ON OBJECT::[dp700_e018].[user_region] TO [test@graxiano.com]
+    AS [dbo];
+GO
+

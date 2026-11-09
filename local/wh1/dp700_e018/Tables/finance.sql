@@ -5,3 +5,9 @@ CREATE TABLE [dp700_e018].[finance] (
 );
 GO
 
+
+GRANT SELECT
+    ON OBJECT::[dp700_e018].[finance] TO [test@graxiano.com]
+    AS [dbo];
+GO
+

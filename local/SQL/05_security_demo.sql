@@ -53,3 +53,30 @@ CREATE TABLE dp700_e018.user_region (
 INSERT INTO dp700_e018.user_region
 VALUES
 ('test@graxiano.com', 'north');
+
+
+--Granting access on table level (OLS)
+GRANT SELECT ON dp700_e018.finance TO [test@graxiano.com];
+GRANT SELECT ON dp700_e018.sales TO [test@graxiano.com];
+GRANT SELECT ON dp700_e018.user_region TO [test@graxiano.com];
+
+--Grating access on column level (CLS)
+GRANT SELECT ON dp700_e018.employees(employee_id, full_name, department) TO [test@graxiano.com];
+
+--Limiting access on column level (RLS)
+CREATE FUNCTION dp700_e018.fn_sales_rls(@region VARCHAR(50))
+RETURNS TABLE
+WITH SCHEMABINDING
+AS
+RETURN SELECT 1 AS result
+WHERE @region IN (
+    SELECT region FROM dp700_e018.user_region
+    WHERE user_email = USER_NAME()
+);
+GO
+
+CREATE SECURITY POLICY dp700_e018.sales_rls_policy
+ADD FILTER PREDICATE dp700_e018.fn_sales_rls(region)
+ON dp700_e018.sales
+WITH (STATE = ON);
+GO

@@ -6,3 +6,21 @@ CREATE TABLE [dp700_e018].[employees] (
 );
 GO
 
+
+GRANT SELECT
+    ON [dp700_e018].[employees] ([department]) TO [test@graxiano.com]
+    AS [dbo];
+GO
+
+
+GRANT SELECT
+    ON [dp700_e018].[employees] ([employee_id]) TO [test@graxiano.com]
+    AS [dbo];
+GO
+
+
+GRANT SELECT
+    ON [dp700_e018].[employees] ([full_name]) TO [test@graxiano.com]
+    AS [dbo];
+GO
+
