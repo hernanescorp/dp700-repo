@@ -5,10 +5,3 @@ CREATE TABLE [dp700_e018].[sales] (
     [amount]       DECIMAL (18, 2) NULL
 );
 GO
-
-
-GRANT SELECT
-    ON OBJECT::[dp700_e018].[sales] TO [test@graxiano.com]
-    AS [dbo];
-GO
-

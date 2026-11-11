@@ -7,6 +7,14 @@
     <DSP>Microsoft.Data.Tools.Schema.Sql.SqlDwUnifiedDatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- Historical identity: documentation only, never executed. -->
+    <Build Remove="Security\test@graxiano.com.sql" />
+    <None Include="Security\test@graxiano.com.sql" />
+    <!-- One self-contained script avoids Fabric native SQLCMD :r limitations. -->
+    <Build Remove="Deployment\PostDeploy.sql" />
+    <PostDeploy Include="Deployment\PostDeploy.sql" />
+  </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
   </Target>

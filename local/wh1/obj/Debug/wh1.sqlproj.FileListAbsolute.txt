@@ -1,0 +1,5 @@
+c:\dev\fabric\dp700-repo\local\wh1\bin\Debug\wh1.dacpac
+c:\dev\fabric\dp700-repo\local\wh1\obj\Debug\Model.xml
+c:\dev\fabric\dp700-repo\local\wh1\obj\Debug\refactor.xml
+c:\dev\fabric\dp700-repo\local\wh1\obj\Debug\postdeploy.sql
+c:\dev\fabric\dp700-repo\local\wh1\obj\Debug\predeploy.sql
