@@ -13,3 +13,9 @@ CREATE TABLE [dp700_e019].[masking_demo] (
     [random_number]      INT MASKED WITH (FUNCTION = 'random(1000, 9999)')                        NULL
 );
 GO
+
+GRANT SELECT
+    ON OBJECT::[dp700_e019].[masking_demo] TO [test@graxiano.com]
+    AS [dbo];
+GO
+
