@@ -1,0 +1,39 @@
+table animals
+	lineageTag: 0a81a822-c5a9-477d-a631-2fa8bd4731be
+	sourceLineageTag: [sch].[animals]
+
+	column NAME
+		dataType: string
+		lineageTag: c8715aca-e587-4712-946d-d568866c6d3f
+		sourceLineageTag: NAME
+		summarizeBy: none
+		sourceColumn: NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column GROUP
+		dataType: string
+		lineageTag: 66a126b6-ffc2-4531-989b-544e72f7456e
+		sourceLineageTag: GROUP
+		summarizeBy: none
+		sourceColumn: GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9a31da17-e657-47fc-94ce-4e5f602b5f01
+		sourceLineageTag: ts
+		summarizeBy: none
+		sourceColumn: ts
+
+		annotation SummarizationSetBy = Automatic
+
+	partition animals = entity
+		mode: directLake
+		source
+			entityName: animals
+			schemaName: sch
+			expressionSource: 'DirectLake - lk_1'
+

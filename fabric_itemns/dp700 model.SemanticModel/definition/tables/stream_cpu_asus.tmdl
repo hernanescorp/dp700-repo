@@ -1,0 +1,73 @@
+table stream_cpu_asus
+	lineageTag: dad9a678-c8b3-440a-bc04-fa8f9da0bcb8
+	sourceLineageTag: [dbo].[stream_cpu_asus]
+
+	column host
+		dataType: string
+		lineageTag: 533acb7c-72c7-41ef-83c3-20cbb6086567
+		sourceLineageTag: host
+		summarizeBy: none
+		sourceColumn: host
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpu_percent
+		dataType: double
+		lineageTag: 5efecdd0-2e36-4e6e-a595-ad034da2d8bf
+		sourceLineageTag: cpu_percent
+		summarizeBy: sum
+		sourceColumn: cpu_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column memory_percent
+		dataType: double
+		lineageTag: 8ca18f61-6f12-4998-ad2c-bd5245c340f7
+		sourceLineageTag: memory_percent
+		summarizeBy: sum
+		sourceColumn: memory_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column disk_percent
+		dataType: double
+		lineageTag: aaed0140-0afc-4d80-bc8c-f1350ebcb8b5
+		sourceLineageTag: disk_percent
+		summarizeBy: sum
+		sourceColumn: disk_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gpu_temperature_c
+		dataType: double
+		lineageTag: c7c0c70b-ba1c-4803-b6e8-c7bc2aee9421
+		sourceLineageTag: gpu_temperature_c
+		summarizeBy: sum
+		sourceColumn: gpu_temperature_c
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column timestamp
+		dataType: string
+		lineageTag: 3432a574-c338-41f3-b9d9-a4a6b96ace17
+		sourceLineageTag: timestamp
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition stream_cpu_asus = entity
+		mode: directLake
+		source
+			entityName: stream_cpu_asus
+			schemaName: dbo
+			expressionSource: 'DirectLake - lk_1'
+

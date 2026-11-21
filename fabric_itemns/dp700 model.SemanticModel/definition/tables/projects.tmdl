@@ -1,0 +1,61 @@
+table projects
+	lineageTag: 298550bb-f138-48dc-9ca0-a42e84381694
+	sourceLineageTag: [dp700].[projects]
+
+	column project_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b247afd-11c2-402c-af50-427f4ecbdd33
+		sourceLineageTag: project_id
+		summarizeBy: sum
+		sourceColumn: project_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_name
+		dataType: string
+		lineageTag: 817d65ed-3cef-4fed-aafe-7276754d6fc0
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5dcfff7c-724b-4589-a157-0f07fc876f5c
+		sourceLineageTag: department_id
+		summarizeBy: sum
+		sourceColumn: department_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget
+		dataType: double
+		lineageTag: 118c4e08-5e50-44f9-9bc6-dae3f1c1d325
+		sourceLineageTag: budget
+		summarizeBy: sum
+		sourceColumn: budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 415f9201-b083-44f7-baa3-b91691a57707
+		sourceLineageTag: start_date
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition projects = entity
+		mode: directLake
+		source
+			entityName: projects
+			schemaName: dp700
+			expressionSource: 'DirectLake - lk_1'
+

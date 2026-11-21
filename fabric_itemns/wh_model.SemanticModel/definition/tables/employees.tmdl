@@ -1,0 +1,69 @@
+table employees
+	lineageTag: 314cbd52-8683-4df3-b868-9df3f0a2703d
+	sourceLineageTag: [dp700].[employees]
+
+	column employee_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f080a3e8-e223-4735-a35f-8acbbaf1402d
+		sourceLineageTag: employee_id
+		summarizeBy: none
+		sourceColumn: employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 7f70ed00-00ba-4924-a20c-51471cc72df1
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d531fbad-0786-4486-b46d-44099a094cda
+		sourceLineageTag: department_id
+		summarizeBy: none
+		sourceColumn: department_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hire_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 8312c96c-02e3-4122-8859-9c14934fefd5
+		sourceLineageTag: hire_date
+		summarizeBy: none
+		sourceColumn: hire_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column salary
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(10, 2)
+		lineageTag: 33cf8edd-1eed-456d-a0a5-6140bd684f9a
+		sourceLineageTag: salary
+		summarizeBy: sum
+		sourceColumn: salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition employees = entity
+		mode: directLake
+		source
+			entityName: employees
+			schemaName: dp700
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

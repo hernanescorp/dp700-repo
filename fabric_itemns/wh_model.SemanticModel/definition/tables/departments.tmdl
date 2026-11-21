@@ -1,0 +1,54 @@
+table departments
+	lineageTag: 4da30c27-bc66-4dd5-9d67-89691d84c023
+	sourceLineageTag: [dp700].[departments]
+
+	column department_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: df6f92d0-5541-4dea-b679-dba53b70d6b6
+		sourceLineageTag: department_id
+		summarizeBy: none
+		sourceColumn: department_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_name
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: fd09362a-1e0b-4503-a98e-c0cdd7ccd9e3
+		sourceLineageTag: department_name
+		summarizeBy: none
+		sourceColumn: department_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column manager
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: cd8bb751-c687-4020-a8eb-39d21f2c1599
+		sourceLineageTag: manager
+		summarizeBy: none
+		sourceColumn: manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 31981c1b-a27c-4974-82e3-2b86d09060f3
+		sourceLineageTag: location
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	partition departments = entity
+		mode: directLake
+		source
+			entityName: departments
+			schemaName: dp700
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

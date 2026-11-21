@@ -1,0 +1,104 @@
+table local_workstation_metrics
+	lineageTag: bdab6470-27b1-48c8-8db6-ba6f96432c79
+	sourceLineageTag: [stream].[local_workstation_metrics]
+
+	column host
+		dataType: string
+		lineageTag: bdbbcccb-1146-41d3-823b-07d9f1fe184b
+		sourceLineageTag: host
+		summarizeBy: none
+		sourceColumn: host
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpu_percent
+		dataType: double
+		lineageTag: ad6507b7-ff26-42bf-b267-748995b64841
+		sourceLineageTag: cpu_percent
+		summarizeBy: sum
+		sourceColumn: cpu_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column memory_percent
+		dataType: double
+		lineageTag: 816ea994-d91e-429f-9650-ed04ae3f7d1e
+		sourceLineageTag: memory_percent
+		summarizeBy: sum
+		sourceColumn: memory_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column disk_percent
+		dataType: double
+		lineageTag: d6ef5031-0981-4153-98cd-06420f978261
+		sourceLineageTag: disk_percent
+		summarizeBy: sum
+		sourceColumn: disk_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gpu_temperature_c
+		dataType: double
+		lineageTag: c923ed64-3cd2-45ac-895d-0a26d2ff8b55
+		sourceLineageTag: gpu_temperature_c
+		summarizeBy: sum
+		sourceColumn: gpu_temperature_c
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c6f109e5-8596-4f20-8d97-217391c4b18c
+		sourceLineageTag: timestamp
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column partition
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ac28cb8-20db-49bf-a5e7-89625329c5aa
+		sourceLineageTag: partition
+		summarizeBy: sum
+		sourceColumn: partition
+
+		annotation SummarizationSetBy = Automatic
+
+	column offset
+		dataType: int64
+		formatString: 0
+		lineageTag: 75fc62e4-74ad-4562-9497-7364ca76286f
+		sourceLineageTag: offset
+		summarizeBy: sum
+		sourceColumn: offset
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c1f66b6f-ef87-4c27-8ad4-4319e6e6ea3a
+		sourceLineageTag: processed_timestamp
+		summarizeBy: none
+		sourceColumn: processed_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition local_workstation_metrics = entity
+		mode: directLake
+		source
+			entityName: local_workstation_metrics
+			schemaName: stream
+			expressionSource: 'DirectLake - lk_1'
+

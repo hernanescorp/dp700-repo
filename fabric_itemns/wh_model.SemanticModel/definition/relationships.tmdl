@@ -1,0 +1,12 @@
+relationship 959fc70a-1bfe-a50b-ca4c-002e44a18451
+	fromColumn: employees.employee_id
+	toColumn: assignments.employee_id
+
+relationship 098d4868-4819-2bd7-9617-5c1ea2bb1d6c
+	fromColumn: employees.department_id
+	toColumn: departments.department_id
+
+relationship 1293478b-ecea-a798-dfd9-3fb0568fb293
+	fromColumn: departments.department_id
+	toColumn: projects.department_id
+

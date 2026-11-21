@@ -1,0 +1,29 @@
+table person_info
+	lineageTag: c91f53fa-2e6f-4ad3-b637-8f9c07ae9b95
+	sourceLineageTag: [dbo].[person_info]
+
+	column name
+		dataType: string
+		lineageTag: cef4c06d-9fb5-4585-9ce9-044e58c439f3
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column info
+		dataType: string
+		lineageTag: 6d8377ed-f93d-4ec2-9314-92ee2bd00aa4
+		sourceLineageTag: info
+		summarizeBy: none
+		sourceColumn: info
+
+		annotation SummarizationSetBy = Automatic
+
+	partition person_info = entity
+		mode: directLake
+		source
+			entityName: person_info
+			schemaName: dbo
+			expressionSource: 'DirectLake - lk_1'
+

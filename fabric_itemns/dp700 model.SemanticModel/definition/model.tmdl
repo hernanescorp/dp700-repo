@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - lk_1"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb"]
+
+ref table person
+ref table person_info
+ref table stream_cpu_asus
+ref table assignments
+ref table departments
+ref table employees
+ref table projects
+ref table animals
+ref table movies
+ref table local_workstation_metrics
+

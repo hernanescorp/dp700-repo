@@ -1,0 +1,69 @@
+table projects
+	lineageTag: 73c57f05-03af-47b3-b908-b562c855501d
+	sourceLineageTag: [dp700].[projects]
+
+	column project_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 00ed5000-4adc-4be0-9030-49bc4f4b0db6
+		sourceLineageTag: project_id
+		summarizeBy: none
+		sourceColumn: project_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_name
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 19694ec8-27b3-4f3c-87a0-9317720d36c0
+		sourceLineageTag: project_name
+		summarizeBy: none
+		sourceColumn: project_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7ca31c25-9411-4c36-879e-abff5cbe1fd0
+		sourceLineageTag: department_id
+		summarizeBy: none
+		sourceColumn: department_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(12, 2)
+		lineageTag: edb169dc-4ca5-432d-8863-478e76b07416
+		sourceLineageTag: budget
+		summarizeBy: none
+		sourceColumn: budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 5df164db-9a05-4bd3-a311-edc52f32a03c
+		sourceLineageTag: start_date
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition projects = entity
+		mode: directLake
+		source
+			entityName: projects
+			schemaName: dp700
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,48 @@
+table movies
+	lineageTag: 579e886d-84c7-4f37-b986-782a048a0564
+	sourceLineageTag: [sch].[movies]
+
+	column FILM
+		dataType: string
+		lineageTag: d3082953-4f25-43ac-ba0f-ddd60f80cee2
+		sourceLineageTag: FILM
+		summarizeBy: none
+		sourceColumn: FILM
+
+		annotation SummarizationSetBy = Automatic
+
+	column YEAR
+		dataType: string
+		lineageTag: dfdb4b08-5a20-4a53-a4a0-b3162560b4ff
+		sourceLineageTag: YEAR
+		summarizeBy: none
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column RATING
+		dataType: string
+		lineageTag: 19ad5539-d235-4422-b1fc-5fff3ec99632
+		sourceLineageTag: RATING
+		summarizeBy: none
+		sourceColumn: RATING
+
+		annotation SummarizationSetBy = Automatic
+
+	column ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8ac6b99e-f071-4a6c-9d6d-f8f60213f201
+		sourceLineageTag: ts
+		summarizeBy: none
+		sourceColumn: ts
+
+		annotation SummarizationSetBy = Automatic
+
+	partition movies = entity
+		mode: directLake
+		source
+			entityName: movies
+			schemaName: sch
+			expressionSource: 'DirectLake - lk_1'
+

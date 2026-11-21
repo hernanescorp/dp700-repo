@@ -1,0 +1,67 @@
+table assignments
+	lineageTag: 1f7bd5fd-e0e3-4d97-9d35-34a82ca4f10a
+	sourceLineageTag: [dp700].[assignments]
+
+	column assignment_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4871bd51-d569-4635-9a93-2cf054288231
+		sourceLineageTag: assignment_id
+		summarizeBy: none
+		sourceColumn: assignment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 748d3f19-6087-408b-9dbe-7bc03c7425f8
+		sourceLineageTag: employee_id
+		summarizeBy: none
+		sourceColumn: employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2e2f3da0-8d75-4cd2-90fa-6e9252fe2f76
+		sourceLineageTag: project_id
+		summarizeBy: none
+		sourceColumn: project_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column assigned_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: bb0f7955-1ec2-4e59-8520-50c9f3c25bfc
+		sourceLineageTag: assigned_date
+		summarizeBy: none
+		sourceColumn: assigned_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column role
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: 3dbb0019-774d-4f8e-8d14-200cfb7184b4
+		sourceLineageTag: role
+		summarizeBy: none
+		sourceColumn: role
+
+		annotation SummarizationSetBy = Automatic
+
+	partition assignments = entity
+		mode: directLake
+		source
+			entityName: assignments
+			schemaName: dp700
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
