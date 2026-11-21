@@ -1,0 +1,178 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "34da17bdc90119309e27",
+  "position": {
+    "x": 1352.556684910086,
+    "y": 28.522283033620017,
+    "z": 0,
+    "height": 280.71931196247067,
+    "width": 567.443315089914,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "employees"
+                    }
+                  },
+                  "Property": "department_id"
+                }
+              },
+              "queryRef": "Sum(employees.department_id)",
+              "nativeQueryRef": "department_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "employees"
+                    }
+                  },
+                  "Property": "employee_id"
+                }
+              },
+              "queryRef": "Sum(employees.employee_id)",
+              "nativeQueryRef": "employee_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "employees"
+                    }
+                  },
+                  "Property": "hire_date"
+                }
+              },
+              "queryRef": "employees.hire_date",
+              "nativeQueryRef": "hire_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "employees"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "employees.name",
+              "nativeQueryRef": "name"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "employees"
+                        }
+                      },
+                      "Property": "salary"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(employees.salary)",
+              "nativeQueryRef": "Suma de salary"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "916f3eb23e5c830d2e4d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "employees"
+              }
+            },
+            "Property": "hire_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0c37d65c485be00604c1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "employees"
+              }
+            },
+            "Property": "name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "49d0750802cba0c74403",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "employees"
+                  }
+                },
+                "Property": "salary"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aa34acb867e0d5968160",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "employees"
+              }
+            },
+            "Property": "employee_id"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8e9b16b052aa33506ecb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "employees"
+              }
+            },
+            "Property": "department_id"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

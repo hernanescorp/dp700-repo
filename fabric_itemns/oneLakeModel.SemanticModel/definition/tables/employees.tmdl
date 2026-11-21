@@ -1,0 +1,61 @@
+table employees
+	lineageTag: 57d3252d-0749-4770-ad7e-58ac5a511de9
+	sourceLineageTag: [dp700].[employees]
+
+	column employee_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 50eaa62e-28eb-485b-8754-c2d2c600015d
+		sourceLineageTag: employee_id
+		summarizeBy: sum
+		sourceColumn: employee_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: aac44eaf-1f5a-4aa7-8bd7-0573e59be601
+		sourceLineageTag: name
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_id
+		dataType: int64
+		formatString: 0
+		lineageTag: beb219af-43d5-406f-8d42-a787c5f406c3
+		sourceLineageTag: department_id
+		summarizeBy: sum
+		sourceColumn: department_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hire_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9a98c6a8-86aa-4b16-9615-9f39ca88aeef
+		sourceLineageTag: hire_date
+		summarizeBy: none
+		sourceColumn: hire_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column salary
+		dataType: double
+		lineageTag: 397bfe21-4af0-43c7-b78b-9b776d1afa28
+		sourceLineageTag: salary
+		summarizeBy: sum
+		sourceColumn: salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition employees = entity
+		mode: directLake
+		source
+			entityName: employees
+			schemaName: dp700
+			expressionSource: 'DirectLake - lk_1'
+
